@@ -54,3 +54,38 @@ func (m *Repository) About(w http.ResponseWriter, r *http.Request) {
 		StringMap: stringMap,
 	})
 }
+
+// Reservation renders the make a reservation page and displays the reservation form
+func (m *Repository) Reservation(w http.ResponseWriter, r *http.Request) {
+
+	render.RenderTemplate(w, "make-reservation.page.tmpl", &models.TemplateData{})
+
+}
+
+// President renders the president page
+func (m *Repository) President(w http.ResponseWriter, r *http.Request) {
+
+	render.RenderTemplate(w, "president.page.tmpl", &models.TemplateData{})
+
+}
+
+// RoyalSweet renders the royal-sweet page
+func (m *Repository) RoyalSweet(w http.ResponseWriter, r *http.Request) {
+
+	render.RenderTemplate(w, "royal-sweet.page.tmpl", &models.TemplateData{})
+
+}
+
+// Availability renders the search availability page
+func (m *Repository) Availability(w http.ResponseWriter, r *http.Request) {
+
+	render.RenderTemplate(w, "search-availability.page.tmpl", &models.TemplateData{})
+
+}
+
+// Contact renders the search availability page
+func (m *Repository) Contact(w http.ResponseWriter, r *http.Request) {
+
+	render.RenderTemplate(w, "contact.page.tmpl", &models.TemplateData{})
+
+}
