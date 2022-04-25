@@ -83,6 +83,13 @@ func (m *Repository) Availability(w http.ResponseWriter, r *http.Request) {
 
 }
 
+// MakeReservation renders the make-reservation page
+func (m *Repository) MakeReservation(w http.ResponseWriter, r *http.Request) {
+
+	render.RenderTemplate(w, "make-reservation.page.tmpl", &models.TemplateData{})
+
+}
+
 // Contact renders the search availability page
 func (m *Repository) Contact(w http.ResponseWriter, r *http.Request) {
 

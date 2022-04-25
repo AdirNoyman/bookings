@@ -23,6 +23,7 @@ func routes(app *config.AppConfig) http.Handler {
 	mux.Get("/president", handlers.Repo.President)
 	mux.Get("/royal-sweet", handlers.Repo.RoyalSweet)
 	mux.Get("/search-availability", handlers.Repo.Availability)
+	mux.Get("/make-reservation", handlers.Repo.MakeReservation)
 	mux.Get("/contact", handlers.Repo.Contact)
 
 	// Serve static files

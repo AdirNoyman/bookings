@@ -119,6 +119,7 @@
             integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
             crossorigin="anonymous"
     ></script>
+    <script src="https://cdn.jsdelivr.net/npm/vanillajs-datepicker@1.2.0/dist/js/datepicker-full.min.js"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
         function Prompt() {
@@ -214,76 +215,10 @@
 
             return { toast, success, error, custom };
         }
-        let attention = Prompt();
-        document
-            .getElementById('colorButton')
-            .addEventListener('click', () => {
-                // // notify('This is a success message', 'success');
-                // notifyModal(
-                // 	'This is Great!',
-                // 	'You are awesome 🤓',
-                // 	'success',
-                // 	'Click me!'
-                // );
 
-                let html = `
-
-					<form id="check-availability-form" action="" method="POST" novalidate class="needs-validation" autocomplete="off">
-								<div className="row">
-									<div className="col"  style="overflow: hidden">
-									<div class="row"  id="reservation-dates-modal">
-										<div class="col">
-											<input type="text" required class="form-control" name="start" id="start" placeholder="Arrival" />
-										</div>
-										<div class="col">
-											<input type="text" required class="form-control" name="end" id="end" placeholder="Departure"/>
-										</div>
-									</div>
-									</div>
-								</div>
-
-					</form>
-					`;
-
-                attention.custom({
-                    msg: html,
-                    title: 'Choose your dates please 🤓',
-                });
-            });
     </script>
-    <script>
-        // Example starter JavaScript for disabling form submissions if there are invalid fields
-        (function () {
-            'use strict';
 
-            // Fetch all the forms we want to apply custom Bootstrap validation styles to
-            let forms = document.querySelectorAll('.needs-validation');
 
-            // Loop over them and prevent submission
-            Array.prototype.slice.call(forms).forEach(function (form) {
-                form.addEventListener(
-                    'submit',
-                    function (event) {
-                        if (!form.checkValidity()) {
-                            event.preventDefault();
-                            event.stopPropagation();
-                        }
-
-                        form.classList.add('was-validated');
-                    },
-                    false
-                );
-            });
-        })();
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/vanillajs-datepicker@1.2.0/dist/js/datepicker-full.min.js"></script>
-
-    <script>
-        const elem = document.getElementById('reservation-dates');
-        const rangepicker = new DateRangePicker(elem, {
-            format: 'dd/mm/yyyy',
-        });
-    </script>
     <script src="https://unpkg.com/notie"></script>
     <script>
         const notify = (msg, msgType) => {
