@@ -1,6 +1,7 @@
 package handlers
 
 import (
+	"fmt"
 	"github.com/AdirNoyman/bookings/pkg/config"
 	"github.com/AdirNoyman/bookings/pkg/models"
 	"github.com/AdirNoyman/bookings/pkg/render"
@@ -36,7 +37,7 @@ func (m *Repository) Home(w http.ResponseWriter, r *http.Request) {
 	remoteIP := r.RemoteAddr
 	m.App.Session.Put(r.Context(), "remote_ip", remoteIP)
 
-	render.RenderTemplate(w, "home.page.tmpl", &models.TemplateData{})
+	render.RenderTemplate(w, r, "home.page.tmpl", &models.TemplateData{})
 }
 
 // About is the about page handler
@@ -49,7 +50,7 @@ func (m *Repository) About(w http.ResponseWriter, r *http.Request) {
 
 	stringMap["remote_ip"] = remoteIP
 
-	render.RenderTemplate(w, "about.page.tmpl", &models.TemplateData{
+	render.RenderTemplate(w, r, "about.page.tmpl", &models.TemplateData{
 		// The data I'm might pass in the template
 		StringMap: stringMap,
 	})
@@ -58,41 +59,54 @@ func (m *Repository) About(w http.ResponseWriter, r *http.Request) {
 // Reservation renders the make a reservation page and displays the reservation form
 func (m *Repository) Reservation(w http.ResponseWriter, r *http.Request) {
 
-	render.RenderTemplate(w, "make-reservation.page.tmpl", &models.TemplateData{})
+	render.RenderTemplate(w, r, "make-reservation.page.tmpl", &models.TemplateData{})
 
 }
 
 // President renders the president page
 func (m *Repository) President(w http.ResponseWriter, r *http.Request) {
 
-	render.RenderTemplate(w, "president.page.tmpl", &models.TemplateData{})
+	render.RenderTemplate(w, r, "president.page.tmpl", &models.TemplateData{})
 
 }
 
 // RoyalSweet renders the royal-sweet page
 func (m *Repository) RoyalSweet(w http.ResponseWriter, r *http.Request) {
 
-	render.RenderTemplate(w, "royal-sweet.page.tmpl", &models.TemplateData{})
+	render.RenderTemplate(w, r, "royal-sweet.page.tmpl", &models.TemplateData{})
 
 }
 
 // Availability renders the search availability page
 func (m *Repository) Availability(w http.ResponseWriter, r *http.Request) {
 
-	render.RenderTemplate(w, "search-availability.page.tmpl", &models.TemplateData{})
+	render.RenderTemplate(w, r, "search-availability.page.tmpl", &models.TemplateData{})
+
+}
+
+// PostAvailability renders the search availability page
+func (m *Repository) PostAvailability(w http.ResponseWriter, r *http.Request) {
+
+	// Get the form's data that was submitted by the user
+	start := r.Form.Get("start")
+	end := r.Form.Get("end")
+	_, err := w.Write([]byte(fmt.Sprintf("Start date is %s and the End date is %s 🤓", start, end)))
+	if err != nil {
+		return
+	}
 
 }
 
 // MakeReservation renders the make-reservation page
 func (m *Repository) MakeReservation(w http.ResponseWriter, r *http.Request) {
 
-	render.RenderTemplate(w, "make-reservation.page.tmpl", &models.TemplateData{})
+	render.RenderTemplate(w, r, "make-reservation.page.tmpl", &models.TemplateData{})
 
 }
 
 // Contact renders the search availability page
 func (m *Repository) Contact(w http.ResponseWriter, r *http.Request) {
 
-	render.RenderTemplate(w, "contact.page.tmpl", &models.TemplateData{})
+	render.RenderTemplate(w, r, "contact.page.tmpl", &models.TemplateData{})
 
 }
