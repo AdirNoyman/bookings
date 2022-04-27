@@ -178,7 +178,7 @@
             let custom = async args => {
                 const { msg = '', title = '' } = args;
 
-                const { value: formValues } = await Swal.fire({
+                const { value: result } = await Swal.fire({
                     title: title,
                     html: msg,
                     backdrop: false,
@@ -208,9 +208,33 @@
                     },
                 });
 
-                if (formValues) {
-                    Swal.fire(JSON.stringify(formValues));
+                if (result) {
+
+                    // If the user didn't hit the cancel button...
+                    // Run JS code after the pop-up window closes
+                    if (result.dismiss !== Swal.DismissReason.cancel) {
+                        // then check if the user entered dates
+                        if (result[0] !== "" && result[1] !== "") {
+                            // check if there is a callback handler
+                            if (args.callback !== undefined) {
+
+                                // call the call back handler that was defined by us
+                                args.callback(result);
+                                console.log("result:",result)
+
+                            } else {
+                                // Do nothing
+                                return false
+                            }
+
+                        } else {
+                            // Do nothing
+                           return false
+                        }
+
+                    }
                 }
+
             };
 
             return { toast, success, error, custom };

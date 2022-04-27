@@ -1,10 +1,12 @@
 package handlers
 
 import (
+	"encoding/json"
 	"fmt"
 	"github.com/AdirNoyman/bookings/pkg/config"
 	"github.com/AdirNoyman/bookings/pkg/models"
 	"github.com/AdirNoyman/bookings/pkg/render"
+	"log"
 	"net/http"
 )
 
@@ -95,6 +97,33 @@ func (m *Repository) PostAvailability(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+}
+
+// AvailabilityJSON handles requests for availability and sends JSON response
+type jsonResponse struct {
+	// In order to parse this Go object as JSON, we need the name of the variable to start in Upper case and to set what it's name should be in the json file
+	OK      bool   `json:"ok"`
+	Message string `json:"message"`
+}
+
+func (m *Repository) AvailabilityJSON(w http.ResponseWriter, r *http.Request) {
+
+	resp := jsonResponse{
+
+		OK:      false,
+		Message: "Available",
+	}
+
+	// Marshal = turn Golang object into json
+	out, err := json.MarshalIndent(resp, "", "    ")
+	if err != nil {
+		log.Println(err)
+	}
+
+	// 1. Write bytes that will form the json that will be passed to the handlers response
+	// 2. Setting the header to say what type of response I'm sending
+	w.Header().Set("Content-Type", "application/json")
+	w.Write(out)
 }
 
 // MakeReservation renders the make-reservation page

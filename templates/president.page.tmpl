@@ -70,6 +70,18 @@
                 attention.custom({
                     msg: html,
                     title: 'Choose your dates please 🤓',
+                    // This function will be called if the user didn't hit the cancel button and the input fields are full
+                    callback: function(result) {
+
+                        fetch('/search-availability-json')
+                            .then(response => response.json())
+                            .then(data => {
+                                console.log(data)
+                                console.log(data.ok)
+                                console.log(data.message)
+
+                            })
+                    }
                 });
             });
 
