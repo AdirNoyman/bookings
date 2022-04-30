@@ -186,19 +186,16 @@
                     showCancelButton: true,
                     // A function that will run before the sweetAlert pop-up is displayed
                     willOpen: () => {
-                        const el = document.getElementById(
-                            'reservation-dates-modal'
-                        );
-                        const rp = new DateRangePicker(el, {
-                            format: 'dd-mm-yyyy',
-                            showOnFocus: false,
-                            autohide: true,
-                        });
+                        if (args.willOpen !== undefined) {
+
+                            args.willOpen()
+                        }
                     },
                     didOpen: () => {
-                        document.getElementsByClassName(
-                            'swal2-actions'
-                        )[0].style.zIndex = '0';
+                        if (args.didOpen !== undefined) {
+
+                            args.didOpen()
+                        }
                     },
                     preConfirm: () => {
                         return [
